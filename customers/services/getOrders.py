@@ -5,6 +5,8 @@ def to_dict(data):
 	attributes = ['id', 'customer_id', 'date', 'status', 'payment_mode', 'payment_date', 'shipment_date', 'shipper_id']
 	dict = {}
 	for i, j in zip(attributes, data):
+		if j is None:
+			continue
 		dict[i] = j
 
 	return dict

@@ -16,7 +16,8 @@ def get_by_id(customer_id):
 	                       'gender']
 
 	customer = {}
-
 	for i, j in zip(attributes, data):
+		if j is None:
+			continue
 		customer[i] = j
 	return customer

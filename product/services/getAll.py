@@ -5,6 +5,8 @@ def to_dict(data):
 	              'height', 'weight']
 	dict = {}
 	for i, j in zip(attributes, data):
+		if j is None:
+			continue
 		dict[i] = j
 
 	return dict

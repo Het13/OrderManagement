@@ -20,5 +20,7 @@ def get_by_id(product_id):
 	product = {}
 
 	for i, j in zip(attributes, data):
+		if j is None:
+			continue
 		product[i] = j
 	return product
