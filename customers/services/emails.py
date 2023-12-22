@@ -7,5 +7,7 @@ def get_email():
 	query = 'SELECT CUSTOMER_EMAIL FROM ONLINE_CUSTOMER'
 
 	database_cursor.execute(query)
-
-	return database_cursor.fetchall()
+	emails = []
+	for row in database_cursor.fetchall():
+		emails.append(row[0])
+	return emails

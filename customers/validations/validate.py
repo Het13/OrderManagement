@@ -34,7 +34,6 @@ def check_empty_attributes():
 
 def is_unique_email():
 	email = request.form.get('email')
-
 	if email in emails.get_email():
 		return False
 

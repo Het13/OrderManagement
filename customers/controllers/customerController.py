@@ -9,7 +9,7 @@ def add_customer():
 	if not validate.is_unique_email():
 		return jsonify(error={'message': 'Duplicate email'}), 409
 	result = new.add_customer()
-	jsonify(success={'message': 'Successfully added customer', 'customer_id': result}), 200
+	return jsonify(success={'message': 'Successfully added customer', 'customer_id': result}), 200
 
 
 def get_by_id(id):
