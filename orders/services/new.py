@@ -1,5 +1,6 @@
 from flask import request
 from databaseConnection import database_connection
+from product.services import changeAvailableQuantity
 
 
 def get_header_attributes():
@@ -25,16 +26,23 @@ def get_header_attributes():
 
 
 def get_items_attributes(order_id):
-	product_id = request.form.get('product_id')
-	product_quantity = request.form.get('product_quantity')
+	product_id = request.form.get('product_id').split()
+	product_quantity = request.form.get('product_quantity').split()
 
 	new_order_items_data = [(
 		order_id,
 		curr_product_id,
 		curr_product_quantity
-	) for (curr_product_id, curr_product_quantity) in zip(product_id.split(), product_quantity.split())]
+	) for (curr_product_id, curr_product_quantity) in zip(product_id, product_quantity)]
 
 	return new_order_items_data
+
+
+def get_new_product_quantities():
+	product_id = request.form.get('product_id').split()
+	product_quantity = request.form.get('product_quantity').split()
+
+	return product_id, product_quantity
 
 
 def add_order():
@@ -52,6 +60,9 @@ def add_order():
 
 	new_order_items_data = get_items_attributes(order_id)
 	database_cursor.executemany(new_order_items_insert_stmt, new_order_items_data)
+
+	new_product_ids, new_product_quantities = get_new_product_quantities()
+	changeAvailableQuantity.change_available_quantity(new_product_ids, new_product_quantities)
 
 	database.commit()
 	database.close()

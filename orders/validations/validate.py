@@ -1,4 +1,5 @@
 from flask import request
+from product.services import quantityByID
 
 
 def is_empty_new_attributes():
@@ -24,3 +25,19 @@ def is_empty_modify_attributes():
 			or product_quantity is None or product_quantity == '':
 		return True
 	return False
+
+
+def is_product_available():
+	product_id = request.form.get('product_id')
+	product_quantity = request.form.get('product_quantity')
+
+	product_id = product_id.split()
+	product_quantity = product_quantity.split()
+
+	for id, quantity in zip(product_id, product_quantity):
+		quantity_available = quantityByID.quantity_available(id)
+		print(id,quantity_available)
+		if quantity_available < int(quantity):
+			return False, id
+
+	return True, None

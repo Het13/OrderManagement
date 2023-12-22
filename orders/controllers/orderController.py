@@ -6,6 +6,9 @@ from orders.validations import validate
 def add_order():
 	if validate.is_empty_new_attributes():
 		return jsonify(error={'message': 'Empty Fields'}), 400
+	available, id = validate.is_product_available()
+	if not available:
+		return jsonify(failed={'message': f'Not enough quantity of id:{id} available'}), 200
 	return jsonify(success={'message': 'Successfully added new order.', 'order_id': new.add_order()}), 200
 
 
