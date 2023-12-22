@@ -1,4 +1,5 @@
 from flask import request
+from customers.services import emails
 
 def check_empty_attributes():
 
@@ -30,3 +31,11 @@ def check_empty_attributes():
 			or gender is None or gender == '':
 		return True
 	return False
+
+def is_unique_email():
+	email = request.form.get('email')
+
+	if email in emails.get_email():
+		return False
+
+	return True

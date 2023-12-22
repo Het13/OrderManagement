@@ -2,9 +2,12 @@ from flask import jsonify
 from customers.services import new, getByID, getAll, getOrders
 from customers.validations import validate
 
+
 def add_customer():
 	if validate.check_empty_attributes():
 		return jsonify(error={'Failed': 'Empty Fields'}), 400
+	if not validate.is_unique_email():
+		return jsonify(error={'message': 'Duplicate email'}), 409
 	result = new.add_customer()
 	jsonify(success={'message': 'Successfully added customer', 'customer_id': result}), 200
 
