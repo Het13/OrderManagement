@@ -1,5 +1,5 @@
 from flask import jsonify
-from orders.services import new, modify, updateStatus, updateShipperID
+from orders.services import new, modify, updateStatus, updateShipperID, cancel
 from orders.validations import validate
 from authorizaton import token_required, roles_required
 
@@ -20,7 +20,7 @@ def modify_order(order_id):
 	result = modify.modify_order(order_id)
 	if result:
 		return jsonify(success={'message': 'Successfully modified order'}), 200
-	return jsonify(failed={'message': f'No order with id:{order_id} found'}), 200
+	return jsonify(failed={'message': f'No order with id: {order_id} found'}), 200
 
 
 @token_required
@@ -29,7 +29,7 @@ def update_status(order_id):
 	result = updateStatus.update_status(order_id)
 	if result:
 		return jsonify(success={'message': 'successfully modified order status'}), 200
-	return jsonify(failed={'message': f'No order with id:{order_id} found'}), 404
+	return jsonify(failed={'message': f'No order with id: {order_id} found'}), 404
 
 
 @token_required
@@ -38,4 +38,12 @@ def update_shipper_id(order_id):
 	result = updateShipperID.update_shipper_id(order_id)
 	if result:
 		return jsonify(success={'message': 'Successfully modified shipper_id'}), 200
-	return jsonify(failed={'message': f'No order with id:{order_id} found'}), 404
+	return jsonify(failed={'message': f'No order with id: {order_id} found'}), 404
+
+
+@token_required
+@roles_required('admin', 'user')
+def cancel_order(order_id):
+	if cancel.cancel_order(order_id):
+		return jsonify(success={'message': f'Order with id: {order_id} cancelled'}), 200
+	return jsonify(failed={'message': f'No order with id: {order_id} found'})
