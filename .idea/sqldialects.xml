@@ -4,9 +4,10 @@
     <file url="file://$PROJECT_DIR$/cartons/services/optimal.py" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/customers/services/emails.py" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/customers/services/getOrders.py" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/databaseConnection.py" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/orders/services/updateStatus.py" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/product/services/changeAvailableQuantity.py" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/product/services/getByID.py" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/product/services/quantityByID.py" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/users/services/getRole.py" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/users/services/login.py" dialect="GenericSQL" />
   </component>
 </project>

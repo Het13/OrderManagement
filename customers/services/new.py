@@ -2,6 +2,7 @@ from flask import request
 from datetime import datetime
 from databaseConnection import database_connection
 from address.services import address
+from users.services.add import add
 
 
 def get_address_id(address_data):
@@ -61,5 +62,11 @@ def add_customer():
 	customer_id = database_cursor.lastrowid
 	database.commit()
 	database.close()
+
+	email = request.form.get('email')
+	password = request.form.get('password')
+
+	data = {'email': email, 'password': password}
+	add(data, role='user')
 
 	return customer_id

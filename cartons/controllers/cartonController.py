@@ -1,7 +1,10 @@
 from flask import jsonify
 from cartons.services.optimal import get_optimal_carton
+from authorizaton import token_required, roles_required
 
 
+@token_required
+@roles_required('admin')
 def optimal_carton(order_id):
 	result = get_optimal_carton(order_id)
 	if not result:

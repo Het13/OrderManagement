@@ -6,7 +6,7 @@ def database_connection():
 		host='localhost',
 		user='root',
 		password='Het@2102',
-		database='orders'
+		database='orders1'
 	)
 	database_cursor = database.cursor()
 	return database, database_cursor

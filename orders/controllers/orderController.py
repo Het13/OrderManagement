@@ -1,17 +1,19 @@
 from flask import jsonify
 from orders.services import new, modify, updateStatus, updateShipperID
 from orders.validations import validate
+from authorizaton import token_required, roles_required
 
 
+@token_required
+@roles_required('user')
 def add_order():
 	if validate.is_empty_new_attributes():
 		return jsonify(error={'message': 'Empty Fields'}), 400
-	available, id = validate.is_product_available()
-	if not available:
-		return jsonify(failed={'message': f'Not enough quantity of id:{id} available'}), 200
 	return jsonify(success={'message': 'Successfully added new order.', 'order_id': new.add_order()}), 200
 
 
+@token_required
+@roles_required('user')
 def modify_order(order_id):
 	if validate.is_empty_modify_attributes():
 		return jsonify(error={'message': 'Empty Fields'}), 400
@@ -21,6 +23,8 @@ def modify_order(order_id):
 	return jsonify(failed={'message': f'No order with id:{order_id} found'}), 200
 
 
+@token_required
+@roles_required('admin')
 def update_status(order_id):
 	result = updateStatus.update_status(order_id)
 	if result:
@@ -28,6 +32,8 @@ def update_status(order_id):
 	return jsonify(failed={'message': f'No order with id:{order_id} found'}), 404
 
 
+@token_required
+@roles_required('admin')
 def update_shipper_id(order_id):
 	result = updateShipperID.update_shipper_id(order_id)
 	if result:
