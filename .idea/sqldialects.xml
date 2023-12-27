@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/cartons/services/optimal.py" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/customers/services/emails.py" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/customers/services/getOrders.py" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/databaseConnection.py" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/orders/services/cancel.py" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/orders/services/updateStatus.py" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/product/services/getByID.py" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/users/services/changeRole.py" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/users/services/getRole.py" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/users/services/login.py" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/users/validations/validate.py" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/cartons/services/cartonServices.py" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/customers/services/customer_services.py" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/database_connection.py" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/orders/services/order_services.py" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/users/services/user_services.py" dialect="GenericSQL" />
   </component>
 </project>

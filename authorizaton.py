@@ -3,7 +3,8 @@ import jwt
 from flask import request, jsonify
 import app
 
-from users.services.getRole import get_role
+from users.services.user_services import get_role
+from custom_errors import DatabaseError
 
 
 def token_required(f):
@@ -35,9 +36,13 @@ def roles_required(*roles):
 			token = request.headers.get('Authorization')
 			data = jwt.decode(token, app.app.config['SECRET_KEY'], algorithms=['HS256'])
 			email = data['email']
-			role = get_role(email)
-			if role not in roles:
-				return jsonify(failed={'message': 'You are not authorized'}), 403
+			try:
+				role = get_role(email)
+				if role not in roles:
+					return jsonify(failed={'message': 'You are not authorized'}), 403
+			except DatabaseError:
+				return jsonify(failed={'message': 'Authorization Failed'})
+
 			return f(*args, **kwargs)
 
 		return decorator

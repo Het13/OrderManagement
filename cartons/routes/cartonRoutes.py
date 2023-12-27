@@ -1,5 +1,5 @@
 from flask import Blueprint
-from cartons.controllers.cartonController import optimal_carton
+from cartons.controllers.carton_controller import optimal_carton
 
 carton_routes = Blueprint('carton_routes', __name__)
 
