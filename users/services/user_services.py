@@ -1,5 +1,5 @@
 from database_connection import connection_pool
-from custom_errors import NotFoundError, DatabaseError, LoginError
+from middleware.custom_errors import NotFoundError, DatabaseError, LoginError
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 from flask import request, jsonify

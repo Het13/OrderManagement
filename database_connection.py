@@ -1,6 +1,6 @@
-import mysql.connector
 from mysql.connector import pooling
 
+# databse configuration
 database_config = {
 	'host'    : 'localhost',
 	'user'    : 'root',
@@ -8,6 +8,7 @@ database_config = {
 	'database': 'orders1',
 }
 
+# creating database connection pool
 connection_pool = pooling.MySQLConnectionPool(
 	pool_name='connection_pool',
 	pool_size=5,

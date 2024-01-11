@@ -12,3 +12,7 @@ class LoginError(Exception):
 
 class EmptyResult(Exception):
 	pass
+
+
+class InvalidFilter(Exception):
+	pass

@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.config.from_object('config')
 app.json.sort_keys = False
 
-
+# Routes Registration
 app.register_blueprint(carton_routes, url_prefix='/')
 app.register_blueprint(order_routes, url_prefix='/')
 app.register_blueprint(customer_routes, url_prefix='/')

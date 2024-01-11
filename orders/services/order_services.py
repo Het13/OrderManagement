@@ -1,6 +1,6 @@
 from flask import request
 from database_connection import connection_pool
-from custom_errors import NotFoundError, DatabaseError
+from middleware.custom_errors import NotFoundError, DatabaseError
 
 
 def get_header_attributes(customer_id):

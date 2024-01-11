@@ -1,5 +1,5 @@
 from database_connection import connection_pool
-from custom_errors import NotFoundError, DatabaseError, EmptyResult
+from middleware.custom_errors import NotFoundError, DatabaseError, EmptyResult
 
 
 def get_optimal_carton(order_id):
@@ -22,10 +22,16 @@ def get_optimal_carton(order_id):
 
 		database_cursor.execute(carton_query, carton_params)
 
-		carton = database_cursor.fetchone()
+		query_result = database_cursor.fetchone()
 
-		if carton is None:
+		if query_result is None:
 			raise EmptyResult
+
+		carton = {
+			'id'    : query_result[0],
+			'volume': query_result[1]
+		}
+
 		return carton
 	except NotFoundError:
 		raise NotFoundError

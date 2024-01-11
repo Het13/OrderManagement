@@ -1,9 +1,9 @@
 from flask import request, jsonify
 
 from users.services import user_services
-from authorizaton import token_required, roles_required
-from custom_errors import NotFoundError, DatabaseError, LoginError
-from validations import validate_request_body
+from middleware.authorizaton import token_required, roles_required
+from middleware.custom_errors import NotFoundError, DatabaseError, LoginError
+from middleware.validations import validate_request_body
 
 
 @validate_request_body(required_fields=['email', 'password'])

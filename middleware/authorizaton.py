@@ -4,9 +4,10 @@ from flask import request, jsonify
 import app
 
 from users.services.user_services import get_role
-from custom_errors import DatabaseError
+from middleware.custom_errors import DatabaseError
 
 
+# decorator for validating JWT Token
 def token_required(f):
 	@wraps(f)
 	def decorator(*args, **kwargs):
@@ -29,6 +30,7 @@ def token_required(f):
 	return decorator
 
 
+# decorator for Role Based Authorization
 def roles_required(*roles):
 	def wrapper(f):
 		@wraps(f)

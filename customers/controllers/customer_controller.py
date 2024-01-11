@@ -1,8 +1,8 @@
 from flask import jsonify
 from customers.services import customer_services
-from authorizaton import token_required, roles_required
-from custom_errors import NotFoundError, DatabaseError
-from validations import validate_request_body, check_duplicate_email
+from middleware.authorizaton import token_required, roles_required
+from middleware.custom_errors import NotFoundError, DatabaseError
+from middleware.validations import validate_request_body, check_duplicate_email
 
 
 @validate_request_body(

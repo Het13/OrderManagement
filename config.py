@@ -1,5 +1,5 @@
-import os
+import secrets
 
-SECRET_KEY = os.urandom(32)
+SECRET_KEY = secrets.token_hex(64)
 
 FLASK_DEBUG = 1

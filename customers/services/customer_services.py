@@ -3,7 +3,7 @@ from flask import request
 from datetime import datetime
 from address.services import address_services
 from users.services import user_services
-from custom_errors import NotFoundError, DatabaseError
+from middleware.custom_errors import NotFoundError, DatabaseError
 
 
 def get_email():

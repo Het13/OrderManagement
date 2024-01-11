@@ -1,8 +1,8 @@
 from flask import jsonify
 from orders.services import order_services
-from authorizaton import token_required, roles_required
-from custom_errors import NotFoundError, DatabaseError
-from validations import validate_request_body
+from middleware.authorizaton import token_required, roles_required
+from middleware.custom_errors import NotFoundError, DatabaseError
+from middleware.validations import validate_request_body
 
 
 @token_required

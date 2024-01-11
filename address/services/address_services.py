@@ -1,5 +1,5 @@
 from database_connection import connection_pool
-from custom_errors import DatabaseError
+from middleware.custom_errors import DatabaseError
 
 
 def add_address(data):
