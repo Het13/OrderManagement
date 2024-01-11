@@ -1,11 +1,15 @@
 from mysql.connector import pooling
+from dotenv import load_dotenv
+import os
 
-# databse configuration
+load_dotenv('.env')
+
+# database configuration
 database_config = {
-	'host'    : 'localhost',
-	'user'    : 'root',
-	'password': 'Het@2102',
-	'database': 'orders1',
+	'host'    : os.environ.get('HOST'),
+	'user'    : os.environ.get('USER'),
+	'password': os.environ.get('PASSWORD'),
+	'database': os.environ.get('DATABASE')
 }
 
 # creating database connection pool
